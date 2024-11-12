@@ -1,0 +1,34 @@
+import pgzrun
+from random import randint
+
+WIDTH = 400
+HEIGHT = 350
+
+score = 0
+
+alien = Actor("alien")
+
+def draw():
+    screen.fill("blue")
+    alien.draw()
+    screen.draw.text("Not your score: " + str(score), color="white" , topleft=(10, 10))
+
+def place_alien():
+    alien.x = randint(10, 400)
+    alien.y = randint(10, 350)
+
+def on_mouse_down(pos):
+    global score
+    if alien.collidepoint(pos):
+        print("Failure")
+        score -= 1
+        place_alien()
+    else:
+        print("Yay!")
+        score += 5
+        place_alien()
+
+
+place_alien()
+
+pgzrun.go
